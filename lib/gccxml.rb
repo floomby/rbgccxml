@@ -33,7 +33,7 @@ class GCCXML
   def parse(header_file, to_file)
     includes = @includes.flatten.uniq.map {|i| "-I#{i.chomp}"}.join(" ").chomp
     flags = @flags.flatten.join(" ").chomp
-    flags += " -Wno-unused-command-line-argument --castxml-cc-gnu #{find_clang} --castxml-gccxml"
+    flags += " -Wno-unused-command-line-argument #{find_clang} --castxml-gccxml"
 
     exe = find_exe.strip.chomp
     cmd = "#{exe} #{includes} #{flags} -o #{to_file} #{header_file}"
